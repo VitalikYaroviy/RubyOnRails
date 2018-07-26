@@ -1,0 +1,126 @@
+<!--<p id="notice"><%#= notice %></p>-->
+<div class="d-flex justify-content-end ">
+  <div>
+    <% if user_signed_in? %>
+        <%= link_to 'Выйти', destroy_user_session_path, class:"btn btn-sm btn-dark m-3", :method => :delete %>
+    <% else %>
+        <%= link_to 'Войти', new_user_session_path, class:"btn btn-sm btn-dark m-3"%>
+        <%= link_to 'Зарегистрироваться', new_user_registration_path, class:"btn btn-sm btn-dark m-3"%>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm text-center">
+      <h1>My tasks</h1>
+    </div>
+  </div>
+</div>
+
+<div class="album py-5 bg-light">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm">
+          <%= link_to 'New Task', new_post_path, class:"btn btn-primary btn-lg"%>
+      </div>
+      <div class="col-sm">
+        <%= form_tag(posts_path, method: :get, class: 'search-form d-flex justify-content-center mb-5') do %>
+          <%= text_field_tag(:search, params[:search], class: 'form-control w-50', placeholder: "Search task") %>
+          <%= submit_tag 'Search', class: "btn btn-secondary ml-3" %>
+        <% end %>
+      </div>
+      <div class="col-sm">
+        <div class="d-flex justify-content-end">
+            <%= link_to 'Check all', {controller: :posts, action: :select_all}, :remote => true, class:"mr-4 btn btn-success"%>
+            <%= link_to 'Uncheck all', {controller: :posts, action: :uncheck_all}, :remote => true, class:"mr-4 btn btn-success"%>
+            <%= link_to 'Remove all', {controller: :posts, action: :remove_all}, :remote => true, class:"mr-4 btn btn-warning"%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <h2>Not fulfilled tasks</h2>
+        <% @posts.each do |post| %>
+          <% unless post.status? %>
+            <% if post.user == current_user %>
+              <div class="card mb-4 box-shadow post" style="height: 160px" onmouseover="this.children[2].style.display = 'block'" onmouseout="this.children[2].style.display = 'none'">
+                <div class="d-flex justify-content-center">
+                  <h3>Task:<%= link_to post.title, post %></h3>
+                </div>
+                <div class="d-flex justify-content-around align-items-baseline">
+                  <p class="text-warning">Status: Active</p>
+                  <div>
+                    <a>Select task:</a>
+                    <%= check_box_tag 'completed', post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :id => post.id, :complete => post.statusDelete), :method => :get}, :class => 'input-large' %>
+                  </div>
+                </div>
+                <div style="display: none" class="btn-group card-body">
+                    <%= link_to 'Edit', edit_post_path(post), class:"btn btn-md btn btn-secondary" %>
+                    <%= link_to 'Destroy', post, :remote => true,
+                                class: "btn btn-md btn btn-danger delete_post",
+                                method: :delete,
+                                data: {confirm: 'Are you sure?'}%>
+                </div>
+              </div>
+            <% elsif post.user != current_user %>
+              <div class="card mb-4 box-shadow">
+                <h2>Task:<%= post.title %></h2>
+                <div class="card-body text-muted">
+                  <p>Body: <%= post.body %></p>
+                  <p class="text-info">Priority: <%= post.priority %></p>
+                  <p>Date: <%= post.dueDate %></p>
+                  <p class="text-warning">Status: Active</p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-md-6 text-center">
+        <h2>Completed tasks</h2>
+        <% @posts.each do |post| %>
+          <% if post.status? %>
+            <% if post.user == current_user %>
+              <div class="card mb-4 box-shadow post" style="height: 160px" onmouseover="this.children[2].style.display = 'block'" onmouseout="this.children[2].style.display = 'none'">
+                <div class="d-flex justify-content-center">
+                  <h3>Task:<%= link_to post.title, post %></h3>
+                </div>
+                <div class="d-flex justify-content-around align-items-baseline">
+                  <p class="text-warning">Status: Finished</p>
+                  <div>
+                    <a>Select task:</a>
+                    <%= check_box_tag 'completed', post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :id => post.id, :complete => post.statusDelete), :method => :get}, :class => 'input-large' %>
+                  </div>
+                </div>
+                <div style="display: none" class="btn-group card-body">
+                    <%= link_to 'Edit', edit_post_path(post), class: "btn btn-md btn btn-secondary"%>
+
+                    <%= link_to 'Destroy', post, :remote => true,
+                                class: "btn btn-danger btn-xs glyphicon glyphicon-trash delete_post",
+                                method: :delete,
+                                data: {confirm: 'Are you sure?'}%>
+                </div>
+              </div>
+            <% elsif post.user != current_user %>
+              <div class="card mb-4 box-shadow">
+                <h2>Task:<%= post.title %></h2>
+                <div class="card-body text-muted">
+                  <p>Body: <%= post.body %></p>
+                  <p class="text-info">Priority: <%= post.priority %></p>
+                  <p>Date: <%= post.dueDate %></p>
+                  <p class="text-warning">Status: Finished</p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

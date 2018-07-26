@@ -1,0 +1,27 @@
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="text-center w-50">
+        <div class="card mb-4 box-shadow">
+          <h2>Title:<%= @post.title %></h2>
+          <div class="card-body text-muted">
+            <p>Body: <%= @post.body %></p>
+            <p class="text-info">Priority: <%= @post.priority %></p>
+            <p>Date: <%= @post.dueDate %></p>
+            <p class="text-warning">Status:
+              <% if @post.status? %>
+              <a>Finished</a>
+            <% else %>
+              <a>Active</a>
+            <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_post_path(@post), class: "btn btn-link btn-lg" %> |
+<%= link_to 'Back', posts_path, class: "btn btn-link btn-lg" %>
