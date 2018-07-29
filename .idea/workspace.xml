@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="513b60fb-1a90-493b-835a-b3ab2b469e50" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/posts/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/posts/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/posts/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/posts/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/posts/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/posts/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/posts/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/posts/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/application_system_test_case.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controllers/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controllers/persons_controller_test.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controllers/posts_controller_test.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controllers/welcome_controller_test.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/fixtures/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/fixtures/files/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/fixtures/posts.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/fixtures/users.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/helpers/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/integration/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mailers/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/models/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/models/post_test.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/models/user_test.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/system/.keep" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/user_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/system/posts_test.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_helper.rb" beforeDir="false" />
-    </list>
+    <list default="true" id="513b60fb-1a90-493b-835a-b3ab2b469e50" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -449,12 +421,12 @@
       <workItem from="1532599998809" duration="4927000" />
       <workItem from="1532685019268" duration="1832000" />
       <workItem from="1532778083874" duration="5313000" />
-      <workItem from="1532860884730" duration="1014000" />
+      <workItem from="1532860884730" duration="1290000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150448000" />
+    <option name="totallyTimeSpent" value="150724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
