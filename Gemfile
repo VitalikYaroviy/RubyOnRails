@@ -63,6 +63,11 @@ group :development do
   gem 'sass-rails', '~> 5.0'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.7'
+  gem 'factory_girl'
+end
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
