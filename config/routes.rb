@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   #get "persons/profile"
 
-  get 'welcome' => 'welcome#index', :as => 'welcome'
+  # get 'welcome' => 'welcome#index', :as => 'welcome'
 
-  root :to => 'posts#index'
+  devise_scope :user do
+    root :to => 'devise/registrations#edit'
+  end
 
   # get 'persons/profile', as: 'user_root'
 
