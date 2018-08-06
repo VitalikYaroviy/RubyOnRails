@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
   #get "persons/profile"
 
@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   get 'completed' => 'posts#completed', :as => 'completed'
   get 'select_all' => 'posts#select_all', :as => 'select_all'
   get 'uncheck_all' => 'posts#uncheck_all', :as => 'uncheck_all'
+
+  # devise_for :users, :controllers => {:registrations => "registrations"}
 
 end
