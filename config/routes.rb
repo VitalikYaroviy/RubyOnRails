@@ -3,15 +3,18 @@ Rails.application.routes.draw do
 
   #get "persons/profile"
 
-  # get 'welcome' => 'welcome#index', :as => 'welcome'
-
   devise_scope :user do
-    root :to => 'devise/registrations#edit'
+    authenticated :user do
+      root 'posts#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
   end
 
   # get 'persons/profile', as: 'user_root'
 
-  # resources :posts
   resources :users do
     resources :post
   end
