@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
   #get "persons/profile"
 
-  get 'welcome' => 'welcome#index', :as => 'welcome'
+  devise_scope :user do
+    authenticated :user do
+      root 'posts#index', as: :authenticated_root
+    end
 
-  root :to => 'posts#index'
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
 
   # get 'persons/profile', as: 'user_root'
 
-  # resources :posts
   resources :users do
     resources :post
   end
