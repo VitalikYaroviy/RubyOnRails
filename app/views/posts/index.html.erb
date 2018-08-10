@@ -69,16 +69,6 @@
                                 data: {confirm: 'Are you sure?'}%>
                   </div>
                 </div>
-              <% elsif post.user != current_user %>
-                <div class="card mb-4 box-shadow">
-                  <h2>Task:<%= post.title %></h2>
-                  <div class="card-body text-muted">
-                    <p>Body: <%= post.body %></p>
-                    <p class="text-info">Priority: <%= post.priority %></p>
-                    <p>Date: <%= post.dueDate %></p>
-                    <p class="text-warning">Status: Active</p>
-                  </div>
-                </div>
               <% end %>
             <% end %>
           <% end %>
@@ -106,16 +96,6 @@
                                 class: "btn btn-danger btn-xs glyphicon glyphicon-trash delete_post",
                                 method: :delete,
                                 data: {confirm: 'Are you sure?'}%>
-                  </div>
-                </div>
-              <% elsif post.user != current_user %>
-                <div class="card mb-4 box-shadow">
-                  <h2>Task:<%= post.title %></h2>
-                  <div class="card-body text-muted">
-                    <p>Body: <%= post.body %></p>
-                    <p class="text-info">Priority: <%= post.priority %></p>
-                    <p>Date: <%= post.dueDate %></p>
-                    <p class="text-warning">Status: Finished</p>
                   </div>
                 </div>
               <% end %>
