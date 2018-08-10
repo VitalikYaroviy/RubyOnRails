@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, :controllers => {:registrations => "registrations"}
-
-  devise_for :users, controllers: {sessions: "sessions"}
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   devise_scope :user do
     authenticated :user do
