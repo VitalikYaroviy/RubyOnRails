@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  #get "persons/profile"
+  devise_for :users, controllers: {sessions: "sessions"}
 
   devise_scope :user do
     authenticated :user do
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :posts do
     get 'remove_all', :on => :collection
   end
+
 
   get 'completed' => 'posts#completed', :as => 'completed'
   get 'select_all' => 'posts#select_all', :as => 'select_all'
