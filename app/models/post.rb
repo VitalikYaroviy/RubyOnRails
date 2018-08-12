@@ -4,16 +4,14 @@ class Post < ApplicationRecord
 
   def self.search(search)
     if search
-      Post.where("title LIKE :query", query: "%#{search}%")
+      Post.where('title LIKE :query', query: "%#{search}%")
     else
       Post.all
     end
   end
 
-    validates :title, presence: true,
-              length: { minimum: 1 }
-    validates :priority, presence: true,
-              length: { minimum: 1 }
+  validates :title, presence: true, length: { minimum: 1 }
+  validates :priority, presence: true, length: { minimum: 1 }
 
   validate :expiration_date_cannot_be_in_the_past
 
