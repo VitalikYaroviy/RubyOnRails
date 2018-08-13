@@ -13,17 +13,17 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
-#        - image: circleci/postgres:10.5
-#            environment:
-#              POSTGRES_USER: root
-#              POSTGRES_DB: myapp_development
+      - image: circleci/postgres:10.5
+        environment:
+          POSTGRES_USER: Vitalya
+          POSTGRES_DB: myapp_development
+          POSTGRES_PASSWORD: 1997
 
     working_directory: ~/repo
 
     steps:
       - checkout
-        post:
-          - cp config/database.yml.ci config/database.yml
+        - run: cp config/database.yml.ci config/database.yml
 
       # Download and cache dependencies
       - restore_cache:
