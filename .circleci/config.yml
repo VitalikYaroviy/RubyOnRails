@@ -18,6 +18,8 @@ jobs:
 
     steps:
       - checkout
+        post:
+          - cp config/database.yml.ci config/database.yml
 
       # Download and cache dependencies
       - restore_cache:
