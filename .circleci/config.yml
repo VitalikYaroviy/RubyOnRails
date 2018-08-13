@@ -9,12 +9,6 @@ jobs:
       # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
 
-       - image: circleci/postgres:10.5-alpine
-               environment:
-                 POSTGRES_USER: vitalya
-                 POSTGRES_DB: myapp_development
-                 POSTGRES_PASSWORD: 1997
-
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
