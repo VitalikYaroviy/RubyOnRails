@@ -2,28 +2,28 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
+workflows:
 version: 2
 jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/postgres:9.6
+
+        environment:
+            POSTGRES_USER: vitalya
+            POSTGRES_DB: myapp_development
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
-        - image: circleci/postgres:10.5
-            environment:
-              POSTGRES_USER: root
-              POSTGRES_DB: myapp_development
 
     working_directory: ~/repo
 
     steps:
       - checkout
-        post:
-          - cp config/database.yml.ci config/database.yml
 
       # Download and cache dependencies
       - restore_cache:
@@ -52,12 +52,11 @@ jobs:
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-
             bundle exec rspec --format progress \
                             --format RspecJunitFormatter \
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
-                            $TEST_FILES
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
       # collect reports
       - store_test_results:

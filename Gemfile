@@ -3,11 +3,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
+gem 'pry'
+
 # Bootsrap
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 
 gem 'activeadmin'
+# gem "autoprefixer-rails", path: "/home/vitalya/myapp/autoprefixer-rails-master"
+gem "autoprefixer-rails"
+gem 'rspec_junit_formatter'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -44,7 +49,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use devise for user authentication
 gem 'devise'
-
 gem 'filterrific'
 
 group :development, :test do

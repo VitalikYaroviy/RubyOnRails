@@ -85,6 +85,7 @@ GEM
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -155,7 +156,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
     mimemagic (0.3.2)
-    mini_mime (1.0.0)
+    mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     msgpack (1.2.4)
@@ -166,6 +167,9 @@ GEM
     orm_adapter (0.5.0)
     pg (1.0.0)
     popper_js (1.14.3)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.0.2)
     puma (3.12.0)
     rack (2.0.5)
@@ -229,6 +233,8 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rspec_junit_formatter (0.4.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.7)
@@ -285,6 +291,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  autoprefixer-rails
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0.0)
   byebug
@@ -298,10 +305,12 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
+  pry
   puma (~> 3.11)
   rails (~> 5.2.0)
   rails_12factor
   rspec-rails (~> 3.7)
+  rspec_junit_formatter
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
