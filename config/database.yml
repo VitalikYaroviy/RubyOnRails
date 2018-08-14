@@ -63,6 +63,7 @@ development:
 test:
   <<: *default
   database: myapp_test
+  host: localhost
   username: vitalya
   password: 1997
 
