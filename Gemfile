@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'activeadmin'
 # gem "autoprefixer-rails", path: "/home/vitalya/myapp/autoprefixer-rails-master"
 gem "autoprefixer-rails"
+gem 'rspec_junit_formatter'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
