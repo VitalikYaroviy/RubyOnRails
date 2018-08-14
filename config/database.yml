@@ -26,6 +26,7 @@ default: &default
 development:
   <<: *default
   database: myapp_development
+  host: localhost
   username: vitalya
   password: 1997
 
