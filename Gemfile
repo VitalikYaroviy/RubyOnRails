@@ -13,6 +13,7 @@ gem 'activeadmin'
 # gem "autoprefixer-rails", path: "/home/vitalya/myapp/autoprefixer-rails-master"
 gem "autoprefixer-rails"
 gem 'rspec_junit_formatter'
+gem 'simplecov', require: false, group: :test
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -71,7 +72,9 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.7'
-  gem 'factory_girl'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'pry'
+  gem 'rails-controller-testing'
 end
 
 group :test do
@@ -80,6 +83,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
