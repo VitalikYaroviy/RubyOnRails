@@ -5,7 +5,7 @@ RSpec.describe PostsController, :type => :controller do
   describe do
     login_user
     context 'action index' do
-      let(:post) { FactoryBot.create(:post, title: 'qwert', priority: '5', user_id: '1') }
+      let(:post) { FactoryBot.create(:post, title: 'qwert', priority: '5') }
 
       before do
         get :index
