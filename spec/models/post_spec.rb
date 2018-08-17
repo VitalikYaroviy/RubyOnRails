@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Post do
+RSpec.describe Post do
 
   context 'validates the post title' do
-    let(:post) { FactoryGirl.build(:post, title: nil) }
+    let(:post) { FactoryBot.build(:post, title: nil) }
       it 'valid post' do
         expect(post.valid?).to be_falsey
         expect(post.errors[:title].size).to eq(2)
@@ -11,9 +11,9 @@ describe Post do
   end
 
   context 'search' do
-    let!(:post)  {FactoryGirl.create(:post, title: 'hello world')}
-    let!(:post2)  {FactoryGirl.create(:post, title: 'hello')}
-    let!(:post3)  {FactoryGirl.create(:post, title: 'hi')}
+    let!(:post)  {FactoryBot.create(:post, title: 'hello world')}
+    let!(:post2)  {FactoryBot.create(:post, title: 'hello')}
+    let!(:post3)  {FactoryBot.create(:post, title: 'hi')}
 
     context 'regular search' do
 

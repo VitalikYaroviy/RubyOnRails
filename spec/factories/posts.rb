@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :post do |f|
     f.title 'task1'
     f.priority '1'
