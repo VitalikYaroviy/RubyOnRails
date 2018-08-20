@@ -46,7 +46,7 @@ jobs:
       - run: bundle exec rake db:schema:load
 
       # run tests!
-      - run: bin/rubocop || export SOME_TEST_FAILED=true
+      - run: rubocop
       - run:
           name: run tests
           command: |
