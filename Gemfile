@@ -72,7 +72,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.7'
-  # gem 'factory_girl_rails', '~> 4.0'
   gem 'factory_bot_rails'
   gem 'pry'
   gem 'rails-controller-testing'
