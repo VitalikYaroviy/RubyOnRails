@@ -12,10 +12,6 @@ RSpec.describe PostsController, :type => :controller do
       end
       it 'assigns @posts' do
         expect(assigns(:posts)).to eq([post])
-      end
-
-      it 'renders the index template' do
-        get :index
         expect(response).to render_template('index')
       end
     end
@@ -23,13 +19,9 @@ RSpec.describe PostsController, :type => :controller do
     context 'action new'  do
       it 'post should be new' do
         post = FactoryBot.build(:post)
-        Post.stub(:new).and_return(post)
         get :new
-        expect(assigns(:post)).to eq(post)
-      end
-
-      it 'renders the new template' do
-        get :new
+        expect(assigns(:post)).to_not eq nil
+        expect(assigns(:post)).to be_a_new(Post)
         expect(response).to render_template('new')
       end
     end
@@ -45,15 +37,48 @@ RSpec.describe PostsController, :type => :controller do
         post :create, params: {post: FactoryBot.attributes_for(:post)}
         expect(response).to redirect_to Post.last
       end
+
+      it 'does not save the new post' do
+        expect{
+          post :create, params: {post: FactoryBot.attributes_for(:invalid_post)}
+        }.to_not change(Post,:count)
+      end
+
+      it 're-renders the new method' do
+        post :create, params: {post: FactoryBot.attributes_for(:invalid_post)}
+        expect(response).to render_template :new
+        # response.should render_template :new
+      end
+
     end
 
     context 'action update'  do
-      it 'changes @post new_title' do
-        post = FactoryBot.create(:post, title: 'a')
-        put :update, params: {id: post, post: {title: 'b'}}
-        post.reload
-        expect(post.title).to eq('b')
+      before :each do
+        @post = FactoryBot.create(:post, title: 'title1', priority: 1)
       end
+      it 'changes @post new_title' do
+        put :update, params: {id: @post, post: {title: 'b'}}
+        @post.reload
+        expect(@post.title).to eq('b')
+      end
+
+      it 'locates the requested @post' do
+        put :update, params: {id: @post, post: FactoryBot.attributes_for(:invalid_post)}
+        expect(assigns(:post)).to eq(@post)
+      end
+
+      it "does not change @post's attributes" do
+        put :update, params: { id: @post, post: FactoryBot.attributes_for(:post, title: 'title2', priority: nil)}
+        @post.reload
+        expect(@post.title).not_to eq('title2')
+        expect(@post.priority).to eq(1)
+      end
+
+      it 're-renders the edit method' do
+        put :update, params: {id: @post, post: FactoryBot.attributes_for(:invalid_post)}
+        expect(response).to render_template :edit
+      end
+
     end
 
 
@@ -69,11 +94,6 @@ RSpec.describe PostsController, :type => :controller do
         post = FactoryBot.create(:post)
         get :show, params: {id: post}
         expect(assigns(:post)).to eq(post)
-      end
-
-      it 'render the show template' do
-        post = FactoryBot.create(:post)
-        get :show, params: {id: post}
         expect(response).to render_template :show
       end
     end

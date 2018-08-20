@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :show, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.search(params[:search])
   end
 
   def show
-    @post = Post.find(params[:id])
+
   end
 
   def new
@@ -51,6 +51,12 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
   public

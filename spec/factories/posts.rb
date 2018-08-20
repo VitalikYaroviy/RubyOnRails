@@ -4,4 +4,7 @@ FactoryBot.define do
     f.priority {Faker::Number.between(1, 5)}
     f.user
   end
+  factory :invalid_post, parent: :post do |f|
+    f.title nil
+  end
 end

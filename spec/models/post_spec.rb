@@ -6,7 +6,7 @@ RSpec.describe Post do
     let(:post) { FactoryBot.build(:post, title: nil) }
       it 'valid post' do
         expect(post.valid?).to be_falsey
-        expect(post.errors[:title].size).to eq(2)
+        expect(post.errors[:title]).to have(2).item
     end
   end
 
@@ -20,7 +20,7 @@ RSpec.describe Post do
       subject { Post.search('hello') }
 
       it 'searches posts' do
-        expect(subject.count).to eq 2
+        expect(subject).to have(2).item
         expect(subject).to include(post)
         expect(subject).to include(post2)
       end

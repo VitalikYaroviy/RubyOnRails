@@ -77,6 +77,7 @@ group :development, :test do
   gem 'pry'
   gem 'rails-controller-testing'
   gem 'rubocop-rspec'
+  gem 'rspec-collection_matchers', group: :test
 end
 
 group :test do
