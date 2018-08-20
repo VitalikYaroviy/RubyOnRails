@@ -4,6 +4,6 @@ FactoryBot.define do
     password 'example'
     password_confirmation 'example'
     name {Faker::Name.first_name}
-    lastName {Faker::Name.last_name}
+    last_name {Faker::Name.last_name}
   end
 end
