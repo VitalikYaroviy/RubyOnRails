@@ -21,7 +21,7 @@ RSpec.describe PostsController, :type => :controller do
 
     end
 
-    context 'action new'  do
+    context 'action new' do
 
       it 'post should be new' do
         post = FactoryBot.build(:post)
@@ -38,7 +38,7 @@ RSpec.describe PostsController, :type => :controller do
       it 'creates a new post' do
         expect{
           post :create, params: {post: FactoryBot.attributes_for(:post)}
-        }.to change(Post,:count).by(1)
+        }.to change(Post, :count).by(1)
       end
 
       it 'redirects to the new post' do
@@ -49,7 +49,7 @@ RSpec.describe PostsController, :type => :controller do
       it 'does not save the new post' do
         expect{
           post :create, params: {post: FactoryBot.attributes_for(:invalid_post)}
-        }.to_not change(Post,:count)
+        }.to_not change(Post, :count)
       end
 
       it 're-renders the new method' do
@@ -59,11 +59,11 @@ RSpec.describe PostsController, :type => :controller do
 
     end
 
-    context 'action update'  do
+    context 'action update' do
 
       let!(:post1) {FactoryBot.create(:post, title: 'title1', priority: 1)}
 
-      context  do
+      context do
 
         it 'changes @post new_title' do
           put :update, params: {id: post1, post: {title: 'b'}}
@@ -112,7 +112,7 @@ RSpec.describe PostsController, :type => :controller do
 
     end
 
-    context 'testing my method'  do
+    context 'testing my method' do
 
       it 'method remove_all' do
         post = FactoryBot.create(:post, statusDelete: true)
@@ -127,18 +127,18 @@ RSpec.describe PostsController, :type => :controller do
       end
 
       it 'method uncheck_all' do
-          post = FactoryBot.create(:post, user_id: @user.id, statusDelete: true)
-          put :uncheck_all, params: {post: post}
-          post.reload
-          expect(post.statusDelete).to eq(false)
+        post = FactoryBot.create(:post, user_id: @user.id, statusDelete: true)
+        put :uncheck_all, params: {post: post}
+        post.reload
+        expect(post.statusDelete).to eq(false)
       end
 
 
       it 'method select_all' do
-          post = FactoryBot.create(:post, user_id: @user.id, statusDelete: false)
-          put :select_all, params: {post: post}
-          post.reload
-          expect(post.statusDelete).to eq(true)
+        post = FactoryBot.create(:post, user_id: @user.id, statusDelete: false)
+        put :select_all, params: {post: post}
+        post.reload
+        expect(post.statusDelete).to eq(true)
       end
 
     end

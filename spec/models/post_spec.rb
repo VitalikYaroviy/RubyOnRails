@@ -6,10 +6,10 @@ RSpec.describe Post do
 
     let(:post) { FactoryBot.build(:post, title: nil) }
 
-      it 'valid post' do
-        expect(post).to_not be_valid
-        expect(post.errors[:title]).to have(2).items
-      end
+    it 'valid post' do
+      expect(post).to_not be_valid
+      expect(post.errors[:title]).to have(2).items
+    end
 
   end
 
@@ -31,7 +31,7 @@ RSpec.describe Post do
 
     end
 
-    context 'empty serach' do
+    context 'empty search' do
 
       it 'returns all posts' do
         expect(Post.search(nil)).to eq(Post.all)

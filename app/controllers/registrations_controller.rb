@@ -28,6 +28,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
   def after_sign_up_path_for(*)
     posts_path
   end
