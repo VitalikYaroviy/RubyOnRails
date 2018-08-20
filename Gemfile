@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 gem 'rails', '~> 5.2.0'
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg', group: :production
 
 gem 'activeadmin'
 gem 'autoprefixer-rails'
@@ -27,7 +27,6 @@ end
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rails', '~> 5.2.0'
-  gem 'pg', '>= 0.18', '< 2.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails_12factor'
@@ -42,7 +41,6 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-collection_matchers', group: :test
   gem 'rubocop-rspec'
-  gem 'pg', '>= 0.18', '< 2.0'
 end
 
 group :test do
