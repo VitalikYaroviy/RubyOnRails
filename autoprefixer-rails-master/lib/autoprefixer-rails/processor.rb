@@ -7,7 +7,6 @@ IS_SECTION = /^\s*\[(.+)\]\s*$/
 module AutoprefixerRails
   # Ruby to JS wrapper for Autoprefixer processor instance
   class Processor
-
     def initialize(params = { })
       @params = params || { }
     end
@@ -158,7 +157,6 @@ module AutoprefixerRails
         if ExecJS.runtime == ExecJS::Runtimes::Node
           version = ExecJS.runtime.eval('process.version')
           first = version.match(/^v(\d+)/)[1].to_i
-	binding.pry
           if first < 6
             raise "Autoprefixer doesn’t support Node #{ version }. Update it."
           end

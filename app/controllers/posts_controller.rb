@@ -3,21 +3,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @posts = Post.all
     @posts = Post.search(params[:search])
   end
 
-  def show
-
-  end
+  def show; end
 
   def new
     @post = Post.new
   end
 
-  def edit
-
-  end
+  def edit; end
 
   def create
     @post = Post.new(post_params)
@@ -99,7 +94,7 @@ class PostsController < ApplicationController
     end
   end
 
-    def post_params
-      params.require(:post).permit(:title, :body, :priority, :dueDate, :status, :statusDelete, :search)
-    end
+  def post_params
+    params.require(:post).permit(:title, :body, :priority, :dueDate, :status, :statusDelete, :search)
+  end
 end
