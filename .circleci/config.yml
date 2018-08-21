@@ -65,7 +65,7 @@ jobs:
           path: /tmp/test-results
           destination: test-results
   deployment:
-    prod:
+    production:
       branch: master
       heroku:
         appname: naprok-task
