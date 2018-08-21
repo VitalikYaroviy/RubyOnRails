@@ -57,8 +57,8 @@ jobs:
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-      - deployment:
-          production:
+      - deploy:
+          prod:
             branch: master
             commands:
               - git push https://heroku:85e1a01f-c4ec-4a71-9c21-7534bf2f1e53@git.heroku.com/naprok-task.git
