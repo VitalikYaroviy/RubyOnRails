@@ -64,8 +64,8 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-    deployment:
-      prod:
-        branch: master
-        heroku:
-          appname: naprok-task
+  deployment:
+    prod:
+      branch: master
+      heroku:
+        appname: naprok-task
