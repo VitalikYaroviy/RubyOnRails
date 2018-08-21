@@ -58,14 +58,14 @@ jobs:
                             --format progress \
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
+      - deploy:
+          production:
+            branch: master
+            heroku:
+              appname: naprok-task
       # collect reports
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-  deployment:
-    production:
-      branch: master
-      heroku:
-        appname: naprok-task
