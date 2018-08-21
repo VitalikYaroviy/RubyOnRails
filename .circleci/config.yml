@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
-#workflows:
+workflows:
 version: 2
 jobs:
   build:
@@ -58,10 +58,10 @@ jobs:
                             --format progress \
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
-      -deployment:
-         production:
-           branch: master
-                command: |
+      - deployment:
+          production:
+            branch: master
+              command: |
                       git push https://heroku:85e1a01f-c4ec-4a71-9c21-7534bf2f1e53@git.heroku.com/naprok-task.git master
       # collect reports
       - store_test_results:
@@ -69,14 +69,3 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
