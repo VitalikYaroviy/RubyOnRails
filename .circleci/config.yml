@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
-workflows:
+#workflows:
 version: 2
 jobs:
   build:
@@ -59,6 +59,7 @@ jobs:
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
       - deploy:
+          machine: true
           steps:
             - checkout
             - run:
@@ -71,3 +72,14 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
