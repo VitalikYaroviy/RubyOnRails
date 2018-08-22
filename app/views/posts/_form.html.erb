@@ -1,10 +1,10 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
+<%= form_with(model: @post, local: true) do |form| %>
+  <% if @post.errors.any? %>
     <div id="error_explanation" class="text-danger text-center">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-        <% post.errors.full_messages.each do |message| %>
+        <% @post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -36,6 +36,7 @@
           <%= form.date_field :dueDate, class: 'form-control'%>
         </div>
       </div>
+      <%- if showStatus %>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
@@ -43,6 +44,8 @@
             </div>
           </div>
         </div>
+      <% end -%>
+
       <div class="form-group text-center">
         <div class="col-sm-offset-2 col-sm">
           <%= form.submit(class: 'btn btn-primary btn-lg') %>
