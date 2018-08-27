@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.search(params[:search])
+    @post = Post.new
   end
 
   def show; end
@@ -19,10 +20,13 @@ class PostsController < ApplicationController
     @post.user = current_user
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post }
+        flash[:success] = 'Post successfully created'
+        format.html { redirect_to posts_path }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        @posts = Post.all
+        flash[:error] = 'Failed to create a post'
+        format.html { render :index}
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
