@@ -42,69 +42,79 @@
       </div>
     </div>
 
+    <div class="container">
+      <h2>Not fulfilled tasks</h2>
+      <table class="table table-hover status-active">
+        <thead>
+        <tr>
+          <th>Active</th>
+          <th>Title</th>
+          <th>Priority</th>
+          <th>Date</th>
+          <th>Select</th>
+          <th>Setup</th>
+        </tr>
+        </thead>
+        <tbody class="active">
+        <% @posts.each do |post| %>
+          <% unless post.status? %>
+            <tr class="post <%= post.status %>">
+              <td>
+                <%= check_box_tag 'done', post.status, post.status, :data => {:remote => true, :url => url_for(:done => post.status, :action => 'done', :id => post.id), :method => :get}, :class => 'input-large' %>
+              </td>
+              <td>
+                <%= link_to post.title, post %>
+              </td>
+              <td><%= post.priority %></td>
+              <td><%= post.dueDate %></td>
+              <td>Select task: <%= check_box_tag :completed, post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :id => post.id, :complete => post.statusDelete), :method => :get}, :class => 'input-large' %></td>
+              <td>
+                <%= link_to 'Edit', edit_post_path(post), class:"btn btn-md btn btn-secondary" %>
+                <%= link_to 'Destroy', post, :remote => true, class: "btn btn-md btn btn-danger delete_post", method: :delete, data: {confirm: 'Are you sure?'}%>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 text-center">
-          <h2>Not fulfilled tasks</h2>
-          <% @posts.each do |post| %>
-            <% unless post.status? %>
-              <% if post.user == current_user %>
-                <div class="card mb-4 box-shadow post" style="height: 160px" onmouseover="this.children[2].style.display = 'block'" onmouseout="this.children[2].style.display = 'none'">
-                  <div class="d-flex justify-content-center">
-                    <h3>Task:<%= link_to post.title, post %></h3>
-                  </div>
-                  <div class="d-flex justify-content-around align-items-baseline">
-                    <p class="text-warning">Status: Active</p>
-                    <div>
-                      <a>Select task:</a>
-                      <%= check_box_tag 'completed', post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :id => post.id, :complete => post.statusDelete), :method => :get}, :class => 'input-large' %>
-                    </div>
-                  </div>
-                  <div style="display: none" class="btn-group card-body">
-                    <%= link_to 'Edit', edit_post_path(post), class:"btn btn-md btn btn-secondary" %>
-                    <%= link_to 'Destroy', post, :remote => true,
-                                class: "btn btn-md btn btn-danger delete_post",
-                                method: :delete,
-                                data: {confirm: 'Are you sure?'}%>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
+      <h2>Completed tasks</h2>
+      <table class="table table-hover status-finish">
+        <thead>
+        <tr>
+          <th>Finish</th>
+          <th>Title</th>
+          <th>Priority</th>
+          <th>Date</th>
+          <th>Select</th>
+          <th>Setup</th>
+        </tr>
+        </thead>
+        <tbody class="finish">
+        <% @posts.each do |post| %>
+          <% if post.status? %>
+            <tr class="post <%= post.status %>">
+              <td>
+                <%= check_box_tag 'done', post.status, post.status, :data => {:remote => true, :url => url_for(:action => 'done', :id => post.id, :done => post.status), :method => :get}, :class => 'input-large' %>
+              </td>
+              <td><%= link_to post.title, post %></td>
+              <td><%= post.priority %></td>
+              <td><%= post.dueDate %></td>
+              <td>Select task: <%= check_box_tag 'completed', post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :complete => post.statusDelete), :method => :get}, :class => 'input-large' %></td>
+              <td>
+                <%= link_to 'Edit', edit_post_path(post), class:"btn btn-md btn btn-secondary" %>
+                <%= link_to 'Destroy', post, :remote => true,
+                            class: "btn btn-md btn btn-danger delete_post",
+                            method: :delete,
+                            data: {confirm: 'Are you sure?'}%>
+              </td>
+            </tr>
           <% end %>
-        </div>
-        <div class="col-md-6 text-center">
-          <h2>Completed tasks</h2>
-          <% @posts.each do |post| %>
-            <% if post.status? %>
-              <% if post.user == current_user %>
-                <div class="card mb-4 box-shadow post" style="height: 160px" onmouseover="this.children[2].style.display = 'block'" onmouseout="this.children[2].style.display = 'none'">
-                  <div class="d-flex justify-content-center">
-                    <h3>Task:<%= link_to post.title, post %></h3>
-                  </div>
-                  <div class="d-flex justify-content-around align-items-baseline">
-                    <p class="text-warning">Status: Finished</p>
-                    <div>
-                      <a>Select task:</a>
-                      <%= check_box_tag 'completed', post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :id => post.id, :complete => post.statusDelete), :method => :get}, :class => 'input-large' %>
-                    </div>
-                  </div>
-                  <div style="display: none" class="btn-group card-body">
-                    <%= link_to 'Edit', edit_post_path(post), class: "btn btn-md btn btn-secondary"%>
-
-                    <%= link_to 'Destroy', post, :remote => true,
-                                class: "btn btn-danger btn-xs glyphicon glyphicon-trash delete_post",
-                                method: :delete,
-                                data: {confirm: 'Are you sure?'}%>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+        <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
-  <% else %>
-  <h1 class="text-center">Hello world</h1>
 <% end %>

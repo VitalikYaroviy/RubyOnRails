@@ -94,6 +94,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def done
+    @post = Post.find(params[:id])
+    @post.status = !@post.status
+    @post.save
+    respond_to do |format|
+      format.js
+      format.html { redirect_to posts_url }
+      format.json { head :no_content }
+    end
+  end
+
   def post_params
     params.require(:post).permit(:title, :body, :priority, :dueDate, :status, :statusDelete, :search)
   end
