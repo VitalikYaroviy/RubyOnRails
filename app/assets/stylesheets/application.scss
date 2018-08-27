@@ -1,9 +1,11 @@
 @import 'bootstrap';
 
-.true {
-  background: transparent url('http://davidrhysthomas.co.uk/linked/strike.png') 0 35% repeat-x;
+.active td.description {
+  text-decoration: none;
 }
 
-.false {
-  background: none;
+.finish td.description {
+  text-decoration: line-through;
 }
+
+
