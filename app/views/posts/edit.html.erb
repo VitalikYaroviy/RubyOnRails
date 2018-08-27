@@ -1,5 +1,5 @@
 <h1 class="text-center mt-3">Editing task</h1>
-<%= render partial: "form", locals: {showStatus: true} %>
+<%= render 'form', post: @post %>
 
 <div class="d-flex justify-content-around">
   <%= link_to 'Show', @post, class: "btn btn-light btn-lg" %>
