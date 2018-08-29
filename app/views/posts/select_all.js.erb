@@ -1,5 +1,3 @@
-$(':checkbox').each(function () {
-  if (this.name != 'done') {
+$("input.forRemove[type='checkbox']").each(function () {
     $(this).prop("checked", true)
-  }
 })

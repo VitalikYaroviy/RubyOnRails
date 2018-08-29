@@ -45,6 +45,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
     respond_to do |format|
       format.js
@@ -60,33 +61,6 @@ class PostsController < ApplicationController
   end
 
   public
-
-  def remove_all
-    Post.where(statusDelete: true).delete_all
-    respond_to do |format|
-      format.js
-      format.html {redirect_to posts_url}
-      format.json {head :no_content}
-    end
-  end
-
-  def select_all
-    Post.where(user_id: current_user.id).update_all(statusDelete: true)
-    respond_to do |format|
-      format.js
-      format.html {redirect_to posts_url}
-      format.json {head :no_content}
-    end
-  end
-
-  def uncheck_all
-    Post.where(user_id: current_user.id).update_all(statusDelete: false)
-    respond_to do |format|
-      format.js
-      format.html {redirect_to posts_url}
-      format.json {head :no_content}
-    end
-  end
 
   def completed
     @post = Post.find(params[:id])

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("input[type='checkbox']").on('click', function (e) {
+  $("input.status[type='checkbox']").on('click', function (e) {
     let copy = Object.assign({}, $(e.target).closest('tr'));
     $(e.target).closest('tr').detach()
     if (e.target.checked) {
@@ -9,4 +9,4 @@ $(document).ready(function () {
       $('.active').append(copy)
     }
   });
-})
+});
