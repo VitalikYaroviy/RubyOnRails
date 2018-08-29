@@ -3,7 +3,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.search(params[:search])
+    @post = Post.search(params[:search])
+    @posts = []
+    @post.each do |post|
+      if post.user == current_user
+        @posts.push(post)
+      end
+    end
   end
 
   def show; end
