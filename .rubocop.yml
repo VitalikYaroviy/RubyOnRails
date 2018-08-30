@@ -170,4 +170,7 @@ Style/Next:
   Enabled: false
 
 Performance/RedundantBlockCall:
-    Enabled: false
+  Enabled: false
+
+Layout/TrailingWhitespace:
+  Enabled: false
