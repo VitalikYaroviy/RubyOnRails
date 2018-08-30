@@ -34,9 +34,9 @@
         </div>
         <div class="col-sm">
           <div class="d-flex justify-content-end">
-            <%= link_to 'Check all', {controller: :posts, action: :select_all}, :remote => true, class: "mr-4 btn btn-success" %>
-            <%= link_to 'Uncheck all', {controller: :posts, action: :uncheck_all}, :remote => true, class: "mr-4 btn btn-success" %>
-            <%= link_to 'Remove all', {controller: :posts, action: :remove_all}, :remote => true, class: "mr-4 btn btn-warning" %>
+            <%= link_to 'Check all', '#', remote: true, onclick: "selectAll()", class: "mr-4 btn btn-success" %>
+            <%= link_to 'Uncheck all', '#', remote: true, onclick: "uncheckAll()", class: "mr-4 btn btn-success" %>
+            <%= link_to 'Remove all','#', remote: true, onclick: "removeAll()", class: "mr-4 btn btn-warning" %>
           </div>
         </div>
       </div>
