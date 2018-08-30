@@ -41,11 +41,6 @@ RSpec.describe PostsController, :type => :controller do
         }.to change(Post, :count).by(1)
       end
 
-      it 'redirects to the new post' do
-        post :create, params: {post: FactoryBot.attributes_for(:post)}
-        expect(response).to redirect_to Post.last
-      end
-
       it 'does not save the new post' do
         expect{
           post :create, params: {post: FactoryBot.attributes_for(:invalid_post)}
@@ -54,7 +49,7 @@ RSpec.describe PostsController, :type => :controller do
 
       it 're-renders the new method' do
         post :create, params: {post: FactoryBot.attributes_for(:invalid_post)}
-        expect(response).to render_template :new
+        expect(response).to render_template :index
       end
 
     end

@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.search(params[:search])
+    @post = Post.new
   end
 
   def show; end
@@ -19,11 +20,15 @@ class PostsController < ApplicationController
     @post.user = current_user
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post }
-        format.json { render :show, status: :created, location: @post }
+        format.js
+        format.html {redirect_to posts_path}
+        format.json {render :show, status: :created, location: @post}
+        flash[:success] = 'Post successfully created'
       else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        @posts = Post.all
+        flash[:error] = 'Failed to create a post'
+        format.html {render :index}
+        format.json {render json: @post.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -31,11 +36,11 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post }
-        format.json { render :show, status: :ok, location: @post }
+        format.html {redirect_to @post}
+        format.json {render :show, status: :ok, location: @post}
       else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @post.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -44,8 +49,8 @@ class PostsController < ApplicationController
     @post.destroy
     respond_to do |format|
       format.js
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      format.html {redirect_to posts_url}
+      format.json {head :no_content}
     end
   end
 
@@ -61,8 +66,8 @@ class PostsController < ApplicationController
     Post.where(statusDelete: true).delete_all
     respond_to do |format|
       format.js
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      format.html {redirect_to posts_url}
+      format.json {head :no_content}
     end
   end
 
@@ -70,8 +75,8 @@ class PostsController < ApplicationController
     Post.where(user_id: current_user.id).update_all(statusDelete: true)
     respond_to do |format|
       format.js
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      format.html {redirect_to posts_url}
+      format.json {head :no_content}
     end
   end
 
@@ -79,8 +84,8 @@ class PostsController < ApplicationController
     Post.where(user_id: current_user.id).update_all(statusDelete: false)
     respond_to do |format|
       format.js
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      format.html {redirect_to posts_url}
+      format.json {head :no_content}
     end
   end
 
@@ -89,8 +94,8 @@ class PostsController < ApplicationController
     @post.statusDelete = !@post.statusDelete
     @post.save
     respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { redirect_to posts_url }
+      format.html {redirect_to posts_url}
+      format.json {redirect_to posts_url}
     end
   end
 
@@ -100,8 +105,8 @@ class PostsController < ApplicationController
     @post.save
     respond_to do |format|
       format.js
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      format.html {redirect_to posts_url}
+      format.json {head :no_content}
     end
   end
 

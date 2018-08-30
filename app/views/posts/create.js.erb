@@ -1,0 +1,2 @@
+$('.form-control').val('');
+post.create('<%= @post.id %>', '<%= @post.title %>', '<%= @post.priority %>', '<%= @post.dueDate%>', '<%= edit_post_path(@post)%>', '<%= posts_path%>');
