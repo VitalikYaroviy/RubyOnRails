@@ -1,3 +1,5 @@
 $(':checkbox').each(function () {
-    $( this ).prop("checked", false )
+  if (this.name != 'done') {
+    $(this).prop("checked", false)
+  }
 })
