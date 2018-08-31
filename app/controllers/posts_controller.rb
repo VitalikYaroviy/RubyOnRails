@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = current_user.posts
+    @post = Post.new
   end
 
   def show; end
