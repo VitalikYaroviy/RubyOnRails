@@ -16,7 +16,6 @@ function removeAll() {
   });
 }
 
-
 function selectAll() {
   $("input.forRemove[type='checkbox']").each(function () {
     $(this).prop("checked", true)
