@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @posts = Post.search(params[:search])
     @posts = current_user.posts
   end
 
@@ -62,6 +61,10 @@ class PostsController < ApplicationController
   end
 
   public
+
+  def destroy_multiple
+    @post = Post.destroy(params[:ids])
+  end
 
   def completed
     @post = Post.find(params[:id])
