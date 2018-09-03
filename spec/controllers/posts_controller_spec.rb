@@ -114,13 +114,6 @@ RSpec.describe PostsController, :type => :controller do
         expect { delete :remove_all, params: {id: post} }.to change { Post.count }.by(-1)
       end
 
-      it 'method completed' do
-        post = FactoryBot.create(:post, statusDelete: false)
-        put :completed, params: {id: post}
-        post.reload
-        expect(post.statusDelete).to eq(true)
-      end
-
       it 'method uncheck_all' do
         post = FactoryBot.create(:post, user_id: @user.id, statusDelete: true)
         put :uncheck_all, params: {post: post}
