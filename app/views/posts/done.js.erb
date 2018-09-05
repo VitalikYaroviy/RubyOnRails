@@ -1,6 +1,4 @@
-var checkbox_id = <%=params[:id]%>
-var tr = $("#" + checkbox_id)
-var checkbox = $(tr).find('.status');
+var checkbox = $("#" + <%= params[:id] %>).find('.status');
 $(document).ready(function () {
   done.change(checkbox[0]);
 });
