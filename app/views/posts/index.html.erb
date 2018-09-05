@@ -69,7 +69,7 @@
             <tbody class="active">
             <% @posts.each do |post| %>
               <% unless post.status? %>
-                <tr class="post" id="<%= post.id %>>
+                <tr class="post" id="<%= post.id %>">
                   <td>
                     <%= check_box_tag 'done', post.status, post.status, :data => {:remote => true, :url => url_for(:done => post.status, :action => 'done', :id => post.id), :method => :get}, :class => 'input-large status' %>
                   </td>
@@ -104,7 +104,7 @@
             <tbody class="finish">
             <% @posts.each do |post| %>
               <% if post.status? %>
-                <tr class="post" id="<%= post.id %>>
+                <tr class="post" id="<%= post.id %>">
                   <td>
                     <%= check_box_tag 'done', post.status, post.status, :data => {:remote => true, :url => url_for(:action => 'done', :id => post.id, :done => post.status), :method => :get}, :class => 'input-large status' %>
                   </td>

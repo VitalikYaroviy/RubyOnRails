@@ -3,6 +3,7 @@ function Post() {}
 let post = new Post();
 Post.prototype.create = function (postId, postTitle, postPriority, postData, editURL, postsURL) {
   let tr = document.createElement('tr');
+  $(tr).attr('id', postId);
   tr.className = 'post';
   let active = document.createElement('td');
   let activeCheckbox = document.createElement('input');
@@ -12,7 +13,7 @@ Post.prototype.create = function (postId, postTitle, postPriority, postData, edi
   $(activeCheckbox).attr('data-remote', "true");
   $(activeCheckbox).attr('data-url', `/done?id=${postId}`);
   $(activeCheckbox).attr('data-method', "get");
-  activeCheckbox.className = 'input-large';
+  activeCheckbox.className = 'input-large status';
   let title = document.createElement('td');
   let priority = document.createElement('td');
   let data = document.createElement('td');
@@ -23,6 +24,7 @@ Post.prototype.create = function (postId, postTitle, postPriority, postData, edi
   $(selectCheckbox).attr('data-url', `/completed?id=${postId}`);
   $(selectCheckbox).attr('data-remote', "true");
   $(selectCheckbox).attr('data-method', "get");
+  selectCheckbox.className = 'input-large forRemove'
   title.innerHTML = postTitle;
   title.className = 'description'
   priority.innerHTML = postPriority;
