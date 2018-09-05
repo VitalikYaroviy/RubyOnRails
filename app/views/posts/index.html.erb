@@ -20,7 +20,6 @@
   </div>
 </div>
 
-
 <% if user_signed_in? %>
   <div class="container">
     <div class="row">
@@ -45,14 +44,13 @@
         </div>
         <div class="col-sm">
           <div class="d-flex justify-content-end">
-            <%= link_to 'Check all', {controller: :posts, action: :select_all}, :remote => true, class: "mr-4 btn btn-success" %>
-            <%= link_to 'Uncheck all', {controller: :posts, action: :uncheck_all}, :remote => true, class: "mr-4 btn btn-success" %>
-            <%= link_to 'Remove all', {controller: :posts, action: :remove_all}, :remote => true, class: "mr-4 btn btn-warning" %>
+            <%= link_to 'Check all', '#', remote: true, onclick: "selectAll()", class: "mr-4 btn btn-success" %>
+            <%= link_to 'Uncheck all', '#', remote: true, onclick: "uncheckAll()", class: "mr-4 btn btn-success" %>
+            <%= link_to 'Remove all','#', remote: true, onclick: "removeAll()", class: "mr-4 btn btn-warning" %>
           </div>
         </div>
       </div>
     </div>
-
     <div class="d-flex align-items-center">
       <div class="my-3 mx-5" style="width: 65%;">
         <div class="my-4">
@@ -128,12 +126,10 @@
             </tbody>
           </table>
         </div>
-      </div>
+      </div><<<<<<< REST
       <div class="w-25 mx-5 mt-5">
         <%= render 'form', post: @post %>
       </div>
     </div>
-
-
   </div>
 <% end %>

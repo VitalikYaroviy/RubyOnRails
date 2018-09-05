@@ -24,6 +24,7 @@ Post.prototype.create = function (postId, postTitle, postPriority, postData, edi
   $(selectCheckbox).attr('data-url', `/completed?id=${postId}`);
   $(selectCheckbox).attr('data-remote', "true");
   $(selectCheckbox).attr('data-method', "get");
+  selectCheckbox.className = 'input-large forRemove'
   title.innerHTML = postTitle;
   title.className = 'description';
   priority.innerHTML = postPriority;

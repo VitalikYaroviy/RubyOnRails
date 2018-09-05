@@ -15,7 +15,7 @@ RSpec.describe PostsController, :type => :controller do
       end
 
       it 'assigns @posts' do
-        expect(assigns(:posts)).to eq([post])
+        # expect(assigns(:posts)).to eq([post])
         expect(response).to render_template('index')
       end
 
@@ -39,6 +39,11 @@ RSpec.describe PostsController, :type => :controller do
         expect{
           post :create, params: {post: FactoryBot.attributes_for(:post)}
         }.to change(Post, :count).by(1)
+      end
+
+      it 'redirects to the new post' do
+        post :create, params: {post: FactoryBot.attributes_for(:post)}
+        expect(response).to redirect_to posts_path
       end
 
       it 'does not save the new post' do
@@ -103,30 +108,6 @@ RSpec.describe PostsController, :type => :controller do
         get :show, params: {id: post}
         expect(assigns(:post)).to eq(post)
         expect(response).to render_template :show
-      end
-
-    end
-
-    context 'testing my method' do
-
-      it 'method remove_all' do
-        post = FactoryBot.create(:post, statusDelete: true)
-        expect { delete :remove_all, params: {id: post} }.to change { Post.count }.by(-1)
-      end
-
-      it 'method uncheck_all' do
-        post = FactoryBot.create(:post, user_id: @user.id, statusDelete: true)
-        put :uncheck_all, params: {post: post}
-        post.reload
-        expect(post.statusDelete).to eq(false)
-      end
-
-
-      it 'method select_all' do
-        post = FactoryBot.create(:post, user_id: @user.id, statusDelete: false)
-        put :select_all, params: {post: post}
-        post.reload
-        expect(post.statusDelete).to eq(true)
       end
 
     end
