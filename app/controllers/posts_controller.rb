@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.search(params[:search])
+    @posts = current_user.posts
     @post = Post.new
   end
 
@@ -62,28 +62,9 @@ class PostsController < ApplicationController
 
   public
 
-  def remove_all
-    Post.where(statusDelete: true).delete_all
+  def destroy_multiple
+    Post.destroy(params[:ids])
     respond_to do |format|
-      format.js
-      format.html {redirect_to posts_url}
-      format.json {head :no_content}
-    end
-  end
-
-  def select_all
-    Post.where(user_id: current_user.id).update_all(statusDelete: true)
-    respond_to do |format|
-      format.js
-      format.html {redirect_to posts_url}
-      format.json {head :no_content}
-    end
-  end
-
-  def uncheck_all
-    Post.where(user_id: current_user.id).update_all(statusDelete: false)
-    respond_to do |format|
-      format.js
       format.html {redirect_to posts_url}
       format.json {head :no_content}
     end

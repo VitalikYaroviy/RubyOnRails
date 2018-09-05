@@ -13,18 +13,13 @@ Rails.application.routes.draw do
     end
   end
 
-  # get 'persons/profile', as: 'user_root'
-
   resources :users do
     resources :post
   end
 
-  resources :posts do
-    get 'remove_all', on: :collection
-  end
+  resources :posts
 
+  delete 'destroy_multiple' => 'posts#destroy_multiple', :as => 'destroy_multiple'
   get 'completed' => 'posts#completed', :as => 'completed'
   get 'done' => 'posts#done', :as => 'done'
-  get 'select_all' => 'posts#select_all', :as => 'select_all'
-  get 'uncheck_all' => 'posts#uncheck_all', :as => 'uncheck_all'
 end
