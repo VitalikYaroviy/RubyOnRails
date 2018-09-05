@@ -1,18 +1,19 @@
 function removeAll() {
-  let arr_ids = [];
-  $("input.forRemove[type='checkbox']").each(function () {
-    if (this.checked) {
-      let post = $(this).closest('.post');
-      let post_id = post[0].id;
-      arr_ids.push(post_id);
-      $(this).closest('.post').detach();
-    }
+  let arrIds = [];
+  let elements = [];
+  $("input.forRemove[type='checkbox']:checked").each(function () {
+    let post = $(this).closest('.post');
+    let postId = post[0].id;
+    arrIds.push(postId);
+    elements.push(this)
   });
 
   $.ajax({
     url: '/destroy_multiple',
     type: 'DELETE',
-    data: { ids: arr_ids }
+    data: {ids: arrIds}
+  }).then(function () {
+    $(elements).closest('.post').detach();
   });
 }
 

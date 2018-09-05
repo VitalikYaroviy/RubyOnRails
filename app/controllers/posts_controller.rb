@@ -46,7 +46,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     respond_to do |format|
       format.js
@@ -64,7 +63,11 @@ class PostsController < ApplicationController
   public
 
   def destroy_multiple
-    @post = Post.destroy(params[:ids])
+    Post.destroy(params[:ids])
+    respond_to do |format|
+      format.html {redirect_to posts_url}
+      format.json {head :no_content}
+    end
   end
 
   def completed
