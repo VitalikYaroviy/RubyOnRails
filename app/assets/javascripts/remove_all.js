@@ -2,10 +2,10 @@ function removeAll() {
   let arrIds = [];
   let elements = [];
   $("input.forRemove[type='checkbox']:checked").each(function () {
-    let post = $(this).closest('.post');
+    let post = $(this).closest('tr.post');
     let postId = post[0].id;
     arrIds.push(postId);
-    elements.push(this)
+    elements.push(post)
   });
 
   $.ajax({
@@ -13,7 +13,7 @@ function removeAll() {
     type: 'DELETE',
     data: {ids: arrIds}
   }).then(function () {
-    $(elements).closest('.post').detach();
+    $(elements).remove();
   });
 }
 
