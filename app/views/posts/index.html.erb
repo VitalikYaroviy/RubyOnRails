@@ -77,7 +77,7 @@
                   <td class="description"><%= post.priority %></td>
                   <td class="description"><%= post.dueDate %></td>
                   <td>Select
-                    task: <%= check_box_tag :completed, post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :id => post.id, :complete => post.statusDelete), :method => :get}, :class => 'input-large forRemove' %></td>
+                    task: <%= check_box_tag 'completed', true, false, :class => 'input-large forRemove' %></td>
                   <td>
                     <%= link_to 'Edit', edit_post_path(post), class: "btn btn-md btn btn-secondary" %>
                     <%= link_to 'Destroy', post, :remote => true, class: "btn btn-md btn btn-danger delete_post", method: :delete, data: {confirm: 'Are you sure?'} %>
@@ -112,7 +112,7 @@
                   <td class="description"><%= post.priority %></td>
                   <td class="description"><%= post.dueDate %></td>
                   <td>Select
-                    task: <%= check_box_tag 'completed', post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :complete => post.statusDelete), :method => :get}, :class => 'input-large forRemove' %></td>
+                    task: <%= check_box_tag 'completed', true, false, :class => 'input-large forRemove' %></td>
                   <td>
                     <%= link_to 'Edit', edit_post_path(post), class: "btn btn-md btn btn-secondary" %>
                     <%= link_to 'Destroy', post, :remote => true,

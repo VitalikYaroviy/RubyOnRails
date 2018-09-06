@@ -70,16 +70,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def completed
-    @post = Post.find(params[:id])
-    @post.statusDelete = !@post.statusDelete
-    @post.save
-    respond_to do |format|
-      format.html {redirect_to posts_url}
-      format.json {redirect_to posts_url}
-    end
-  end
-
   def done
     @post = Post.find(params[:id])
     @post.status = !@post.status

@@ -26,11 +26,11 @@ Post.prototype.create = function (postId, postTitle, postPriority, postData, edi
   $(selectCheckbox).attr('data-method', "get");
   selectCheckbox.className = 'input-large forRemove'
   title.innerHTML = postTitle;
-  title.className = 'description'
+  title.className = 'description';
   priority.innerHTML = postPriority;
-  priority.className = 'description'
+  priority.className = 'description';
   data.innerHTML = postData;
-  data.className = 'description'
+  data.className = 'description';
 
   let buttons = document.createElement('td');
   let edit = document.createElement('a');

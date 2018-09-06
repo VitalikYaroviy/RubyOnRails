@@ -13,13 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users do
-    resources :post
-  end
-
   resources :posts
 
   delete 'destroy_multiple' => 'posts#destroy_multiple', :as => 'destroy_multiple'
-  get 'completed' => 'posts#completed', :as => 'completed'
   get 'done' => 'posts#done', :as => 'done'
 end
