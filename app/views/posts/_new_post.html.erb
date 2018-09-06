@@ -1,0 +1,14 @@
+<tr class="post" id="<%= post.id %>">
+  <td>
+    <%= check_box_tag 'done', post.status, post.status, :data => {:remote => true, :url => url_for(:done => post.status, :action => 'done', :id => post.id), :method => :get}, :class => 'input-large status' %>
+  </td>
+  <td class="description"><%= link_to post.title, post %></td>
+  <td class="description"><%= post.priority %></td>
+  <td class="description"><%= post.dueDate %></td>
+  <td>Select
+    task: <%= check_box_tag :completed, post.statusDelete, post.statusDelete, :data => {:remote => true, :url => url_for(:action => 'completed', :id => post.id, :complete => post.statusDelete), :method => :get}, :class => 'input-large' %></td>
+  <td>
+    <%= link_to 'Edit', edit_post_path(post), class: "btn btn-md btn btn-secondary" %>
+    <%= link_to 'Destroy', post, :remote => true, class: "btn btn-md btn btn-danger delete_post", method: :delete, data: {confirm: 'Are you sure?'} %>
+  </td>
+</tr>

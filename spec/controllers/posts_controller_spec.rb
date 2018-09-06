@@ -111,5 +111,16 @@ RSpec.describe PostsController, :type => :controller do
       end
 
     end
+
+    context 'testing my method' do
+      
+      it 'method done' do
+        post = FactoryBot.create(:post, user_id: @user.id, status: false)
+        put :done, params: {id: post.id}
+        post.reload
+        expect(post.status).to eq(true)
+      end
+
+    end
   end
 end
