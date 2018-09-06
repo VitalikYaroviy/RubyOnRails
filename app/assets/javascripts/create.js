@@ -1,6 +1,6 @@
 function Post() {}
 
 let post = new Post();
-Post.prototype.create = function (postId) {
+Post.prototype.hangUpEvent = function (postId) {
   done.change($( "#" + postId).find('.status'));
 };
